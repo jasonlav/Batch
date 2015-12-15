@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+
+<main style="padding: 1em;">
+	<a href="#" class="start btn btn-success btn-lg">Start</a>
+	<a href="#" class="stop btn btn-danger">Stop</a>
+	<a href="#" class="last btn btn-default btn">Run Last Batch</a>
+	<h4 class="status"></h4>
+	<pre class="console"></pre>
+	<ul class="log"></ul>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="batch.js"></script>
+<script>
+	var batch = new Batch({
+		elements: {
+			"status": jQuery(".status"),
+			"log": jQuery(".log"),
+			"console": jQuery(".console")
+		}
+	}, jQuery("status"));
+
+	jQuery(".start").click(function(e) {
+		e.preventDefault();
+
+		batch.start({test: "whatever"});
+	});
+
+	jQuery(".stop").click(function(e) {
+		e.preventDefault();
+
+		batch.stop();
+	});
+
+	jQuery(".last").click(function(e) {
+		e.preventDefault();
+
+		batch.startLast();
+	});
+</script>
+</body>
+</html>
